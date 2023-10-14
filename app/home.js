@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Link } from 'expo-router';
 
-export default function Home() {
+
+export default function App() {
+
   return (
     <View style={styles.container}>
-      <Text>Yellow Fish</Text>
-      <Link href="/login">Login</Link>
+      <Text>Home Page</Text>
       <StatusBar style="auto" />
     </View>
   );
