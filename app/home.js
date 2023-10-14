@@ -4,11 +4,12 @@ import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Link } from 'expo-router';
 
 
+
 export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Home Page</Text>
+      <Text class="title">Home Page</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -20,5 +21,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+    flex: 1,
+
+  title: {
+
   },
 });
