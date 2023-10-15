@@ -1,4 +1,10 @@
+# Lexigo
 
+## Authors
+- [Pranay](https://github.com/Pranay26705)
+- [DracoCS](https://github.com/Danial-Suhail)
+- [Nick](https://github.com/Nickkkk1234)
+- [Adam](https://github.com/Adam-Omarali)
 
 ## Inspiration
 A large percentage of free available language-learning apps available to the public are not as intuitive, appealing, or interactive to many users across the world. In order to solve this issue, we needed to come up with a revolutionary approach to promote language education in both an efficient and accessible system for all – tackling the diversity theme.
