@@ -6,20 +6,20 @@ import { Image } from 'expo-image';
 import fish from '../assets/LogoTransparent.png'
 
 export default function App() {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
 
   const handleLogin = () => {
-    if (email === 'secret' && password === 'code') {
-      alert('');
+    if (email === 'user@gmail.com' && password === 'password') {
+        setIsLoginSuccessful(true);
     } else {
-      alert('Successfully created account!')
+        setIsLoginSuccessful(false);
+        alert('Login failed. Check your credentials.');
     }
   };
 
   return (
-    
     <View style={styles.container}>
 
       <Image
@@ -28,15 +28,10 @@ export default function App() {
         style={styles.headerImg}
       />
 
-      <Text style={styles.title}>Let's get started.</Text>
+      <Text style={styles.title}>Continue your learning.</Text>
 
     <View style={styles.container}>
-    <TextInput
-        style={styles.input}
-        placeholder="Name"
-        value={name}
-        onChangeText={(text) => setName(text)}
-      />
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -54,13 +49,13 @@ export default function App() {
       />
 
       <TouchableOpacity style={styles.button}>
-        <Link style={styles.buttonText} href="/home" onPress={handleLogin}>
-          <Text>Sign Up!</Text>
+        <Link style={styles.buttonText} onPress={handleLogin} href={isLoginSuccessful ? '/home' : '/login2'}>
+          <Text>Log In!</Text>
         </Link>
       </TouchableOpacity>
 
       <Text style={styles.body}>
-        Already signed up? <Text style={styles.bodyLogIn}><Link href="/login2">Log in.</Link></Text>
+        No account? <Text style={styles.bodyLogIn}><Link href="/login">Sign up.</Link></Text>
       </Text>
     </View>
 

@@ -50,7 +50,7 @@ export default function App() {
 </View>
 
 
-      <Text style={styles.title}>Welcome, [NAME]!</Text>
+      <Text style={styles.title}>Welcome, User!</Text>
       
 
       <View style={{display: 'flex', flexDirection: 'row', gap: 10}}>

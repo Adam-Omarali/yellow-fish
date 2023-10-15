@@ -98,11 +98,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingBottom: 2,
     fontSize: 25,
-    fontWeight: 'thin',
+    fontWeight: 'bold',
     color: '#fff',
-    textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 3,
     textAlign: 'center',
   },
 
