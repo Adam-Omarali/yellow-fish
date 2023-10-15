@@ -61,7 +61,7 @@ export default function App() {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonTwo}>
-          <Link style={styles.btnText} href="/prediction">
+          <Link style={styles.btnText} href="/quiz">
             <Text>Quiz</Text>
           </Link>
         </TouchableOpacity>
