@@ -6,6 +6,8 @@ import { Link } from 'expo-router';
 import { Image } from 'expo-image';
 import fish from '../assets/Background-Logo-Transparent.png'
 import stingIcon from '../assets/SettingsIcon.png'
+import MainBgIcon from '../assets/MainBgImage.jpg'
+
 
 
 const renderItem = ({item}) => {
@@ -25,13 +27,18 @@ export default function App() {
   return (
 
           <View style={styles.container}>
-<View style={{display: 'flex', flexDirection: 'row', gap: 20, justifyContent: 'space-between', width: '100%'}}>
+<View style={{display: 'flex', flexDirection: 'row', gap: 80, justifyContent: 'space-between', width: '100%'}}>
+<View style={styles.buttonContainer}>
+<Link href="/login">
 <Image
       source={fish}
       alt="Logo"
       style={styles.headerImg}
       />
-      <TouchableOpacity style={styles.buttonContainer}>
+  </Link>
+</View>
+
+      <View style={styles.buttonContainer}>
         <Link href="/settings">
           <Image
             source={stingIcon} // Replace with the actual sourwce of your image
@@ -39,7 +46,7 @@ export default function App() {
             contentFit='contain'
           />
         </Link>
-      </TouchableOpacity>
+      </View>
 </View>
 
 
@@ -54,13 +61,17 @@ export default function App() {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonTwo}>
-          <Link style={styles.btnText} href="/login">
+          <Link style={styles.btnText} href="/camera">
             <Text>1 v 1</Text>
           </Link>
         </TouchableOpacity>
       </View>
-      <Text style={styles.title}>Welcome, [NAME]!</Text>
-
+      
+      <Image
+      source={MainBgIcon}
+      alt="Logo"
+      style={styles.headerImgv3}
+      />
     </View>
 
   );
@@ -83,11 +94,12 @@ const styles = StyleSheet.create({
 
   subtitle: {
     fontSize: 40,
-    fontWeight: 'bold',
+    fontWeight: 'thin',
     color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 3
+    textShadowRadius: 3,
+   
   },
 
   subtitletwo: {
@@ -110,7 +122,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginTop: -25,
-    marginRight: 30,
+    marginRight: 35,
     
   },
 
@@ -118,8 +130,14 @@ const styles = StyleSheet.create({
     
     width: 50,
     height: 50,
+    marginTop: 55,
     marginLeft: 10,
-    
+  },
+
+  headerImgv3: {
+    width: 250,
+    height: 250,
+    marginTop: 50,
   },
 
   backgroundImg: {
@@ -137,19 +155,23 @@ const styles = StyleSheet.create({
 
   buttonOne: {
     backgroundColor: '#E8DA00',
+    marginTop: 40,
     borderRadius: 10,
-    marginTop: 20,
-    paddingVertical: 40,
-    paddingHorizontal: 20,
+    paddingTop: 60,
+    paddingBottom: 60,
+    paddingHorizontal: 30,
+    marginRight: 10,
     
   },
 
   buttonTwo: {
     backgroundColor: '#E8DA00',
-    marginTop: 20,
+    marginTop: 40,
     borderRadius: 10,
-    paddingVertical: 40,
-    paddingHorizontal: 30,
+    paddingTop: 60,
+    paddingBottom: 60,
+    paddingHorizontal: 40,
+    marginLeft: 10,
   },
 
   btnText: {

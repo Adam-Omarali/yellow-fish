@@ -5,7 +5,7 @@ import { Dimensions, TouchableOpacity, SafeAreaView, StyleSheet, Text, View } fr
 import { Link } from 'expo-router';
 import { Image } from 'expo-image';
 import fish from '../assets/Background-Logo-Transparent.png'
-import stingIcon from '../assets/SettingsIcon.png'
+import barrowIcon from '../assets/backArrow.png'
 
 
 const renderItem = ({item}) => {
@@ -25,24 +25,54 @@ export default function Settings() {
   return (
 
           <View style={styles.container}>
-
+      <View style={styles.buttonContainer}>
+        <Link href="/home">
+          <Image
+            source={barrowIcon} // Replace with the actual sourwce of your image
+            style={styles.headerImgTwo}
+            contentFit='contain'
+          />
+        </Link>
+      </View>
       <Text style={styles.title}>My Settings</Text>
       
 
       <View style={{display: 'flex', flexDirection: 'row', gap: 10}}>
-        <TouchableOpacity style={styles.buttonOne}>
-          <Link style={styles.btnText} href="/camera">
-            <Text>Learn</Text>
+        <View style={styles.buttonOne}>
+        <Text style={styles.subtitle}>What Language Do You Want To Learn?</Text>
+          
+          
+          <Link style={styles.btnText} href="/home">
+            <TouchableOpacity style={styles.buttonTwo} href="/home">
+            <Link href="/home">
+            <Text>English</Text>
+            </Link>
+            </TouchableOpacity>
           </Link>
-        </TouchableOpacity>
+        
 
-        <TouchableOpacity style={styles.buttonTwo}>
-          <Link style={styles.btnText} href="/login">
-            <Text>1 v 1</Text>
+          <Link style={styles.btnText} href="/home">
+            <TouchableOpacity style={styles.buttonTwo} href="/home">
+            <Link href="/home">
+            <Text>French</Text>
+            </Link>
+            </TouchableOpacity>
           </Link>
-        </TouchableOpacity>
+
+  
+          <Link style={styles.btnText} href="/home">
+            <TouchableOpacity style={styles.buttonTwo} href="/home">
+            <Link href="/home">
+            <Text>Spanish</Text>
+            </Link>
+            </TouchableOpacity>
+          </Link>
+
+
+  
+        </View>
       </View>
-      <Text style={styles.title}>Welcome, [NAME]!</Text>
+      
 
     </View>
 
@@ -61,16 +91,19 @@ const styles = StyleSheet.create({
   title: {
         fontSize: 30, 
         fontWeight: 'bold',
-        marginTop: 80,
+        marginTop: 5,
   },
 
   subtitle: {
-    fontSize: 40,
-    fontWeight: 'bold',
+    marginTop: 10,
+    paddingBottom: 2,
+    fontSize: 25,
+    fontWeight: 'thin',
     color: '#fff',
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
     textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 3
+    textShadowRadius: 3,
+    textAlign: 'center',
   },
 
   subtitletwo: {
@@ -98,11 +131,9 @@ const styles = StyleSheet.create({
   },
 
   headerImgTwo: {
-    
+
     width: 50,
     height: 50,
-    marginLeft: 10,
-    
   },
 
   backgroundImg: {
@@ -119,26 +150,37 @@ const styles = StyleSheet.create({
   },
 
   buttonOne: {
+    height: 375,
+    width: 335,
     backgroundColor: '#E8DA00',
     borderRadius: 10,
     marginTop: 20,
-    paddingVertical: 40,
-    paddingHorizontal: 20,
+    flex: 'center',
     
   },
 
   buttonTwo: {
-    backgroundColor: '#E8DA00',
-    marginTop: 20,
+    backgroundColor: '#fff',
+    height: 50,
+    width: 300,
+    marginVertical: 10,
     borderRadius: 10,
-    paddingVertical: 40,
-    paddingHorizontal: 30,
+    paddingVertical: 30,
+    paddingHorizontal: 25,
+    marginLeft: 10,
+    
   },
 
   btnText: {
-    color: 'white',
-    fontSize: 30,
+    color: 'black',
+    fontSize: 40,
     fontWeight: 'bold',
+    marginLeft: 11,
+    marginVertical: 10,
+  },
+
+  buttonContainer: {
+    alignSelf: 'left',
   },
 
   transparentBg: {

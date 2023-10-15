@@ -8,7 +8,7 @@ import { Image } from 'expo-image';
 import fish from '../assets/Background-Logo-Transparent.png'
 import bg from '../assets/BackgroundGradient.png'
 import ViewPropTypes from 'deprecated-react-native-prop-types';
-
+import ellipseIcon from '../assets/EllipseMain.png'
 
 export const SLIDER_WIDTH = Dimensions.get('window').width + 30;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
@@ -57,6 +57,12 @@ export default function Home() {
         renderItem={renderItem}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
+      />
+      <Image
+      source={ellipseIcon}
+      alt="Logo"
+      style={styles.headerImgv2}
+      contentFit='contain'
       />
           <TouchableOpacity style={styles.button}>
         <Link style={styles.btnText} href="/login">
@@ -120,6 +126,20 @@ const styles = StyleSheet.create({
       shadowRadius: 2,
   },
 
+  headerImgv2: {
+    position: 'absolute',
+    width: 80,
+    height: 80,
+    alignSelf: 'center',
+    paddingTop: 100,
+    marginTop: 450,
+    marginBottom: 7,
+     shadowColor: '#171717',
+      shadowOffset: {width: -2, height: 4},
+      shadowOpacity: 0.1,
+      shadowRadius: 2,
+  },
+
   backgroundImg: {
     position: 'absolute',
     width: 390,
@@ -135,8 +155,8 @@ const styles = StyleSheet.create({
 
   button: {
     backgroundColor: '#E8DA00',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 25,
     borderRadius: 10,
     marginBottom: 120,
     
