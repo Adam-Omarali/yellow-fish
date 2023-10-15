@@ -14,13 +14,13 @@ export const SLIDER_WIDTH = Dimensions.get('window').width + 30;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
 
 const data = [
-  {id: 1, name: 'React JS',  text: 'Walk, Scan, and Immerse Yourself in Different Languages.'},
-  {id: 2, name: 'JavaScript', text: 'Compete Against your friends to become the best Language Learner!'},
-  {id: 3, name: 'Node JS', text: 'Learning Languages on the Move in an Interactive Environment.'},
+  { id: 1, name: 'React JS', text: 'Walk, Scan, and Immerse Yourself in Different Languages.' },
+  { id: 2, name: 'JavaScript', text: 'Compete Against your friends to become the best Language Learner!' },
+  { id: 3, name: 'Node JS', text: 'Learning Languages on the Move in an Interactive Environment.' },
 ];
 
 
-const renderItem = ({item}) => {
+const renderItem = ({ item }) => {
   return (
     <View
       style={{
@@ -34,24 +34,38 @@ const renderItem = ({item}) => {
 };
 
 export default function Home() {
+  useEffect(() => {
+    async function load() {
+      tf.ready();
+      console.log("ready");
+    }
+    load();
+  }, []);
+
+  function handleCanvas(canvas) {
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "red";
+    ctx.fillRect(0, 0, 0, 0);
+  }
+
   return (
 
-          <View style={styles.container}>
+    <View style={styles.container}>
 
-<Image
-      source={bg}
-      alt="Logo"
-      style={styles.backgroundImg}
+      <Image
+        source={bg}
+        alt="Logo"
+        style={styles.backgroundImg}
       />
       <Text style={styles.title}>Lexigo</Text>
       <Image
-      source={fish}
-      alt="Logo"
-      style={styles.headerImg}
+        source={fish}
+        alt="Logo"
+        style={styles.headerImg}
       />
 
       <Text style={styles.subtitle}>WELCOME</Text>
-      
+
       <Carousel style={styles.transparentBg}
         data={data}
         renderItem={renderItem}
@@ -59,17 +73,17 @@ export default function Home() {
         itemWidth={ITEM_WIDTH}
       />
       <Image
-      source={ellipseIcon}
-      alt="Logo"
-      style={styles.headerImgv2}
-      contentFit='contain'
+        source={ellipseIcon}
+        alt="Logo"
+        style={styles.headerImgv2}
+        contentFit='contain'
       />
-          <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}>
         <Link style={styles.btnText} href="/login">
           <Text>Get Started</Text>
         </Link>
       </TouchableOpacity>
-  
+
 
     </View>
 
@@ -86,8 +100,8 @@ const styles = StyleSheet.create({
   },
 
   title: {
-        fontSize: 50, 
-        fontWeight: 'bold',
+    fontSize: 50,
+    fontWeight: 'bold',
   },
 
   subtitle: {
@@ -95,7 +109,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
+    textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 3
   },
 
@@ -110,7 +124,7 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -0.5, height: 0.5},
+    textShadowOffset: { width: -0.5, height: 0.5 },
     textShadowRadius: 3
   },
 
@@ -120,10 +134,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingTop: 100,
     marginBottom: 7,
-     shadowColor: '#171717',
-      shadowOffset: {width: -2, height: 4},
-      shadowOpacity: 0.1,
-      shadowRadius: 2,
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
 
   headerImgv2: {
@@ -134,10 +148,10 @@ const styles = StyleSheet.create({
     paddingTop: 100,
     marginTop: 450,
     marginBottom: 7,
-     shadowColor: '#171717',
-      shadowOffset: {width: -2, height: 4},
-      shadowOpacity: 0.1,
-      shadowRadius: 2,
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
 
   backgroundImg: {
@@ -147,10 +161,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingTop: 100,
     marginBottom: 7,
-     shadowColor: '#171717',
-      shadowOffset: {width: -2, height: 4},
-      shadowOpacity: 0.1,
-      shadowRadius: 2,
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
 
   button: {
@@ -159,7 +173,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     borderRadius: 10,
     marginBottom: 120,
-    
+
   },
 
   btnText: {
@@ -169,7 +183,7 @@ const styles = StyleSheet.create({
   },
 
   transparentBg: {
-    
+
   },
 
 });
