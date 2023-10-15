@@ -35,7 +35,7 @@ export default function App() {
           </TouchableOpacity>
         </View>
       </Camera>
-      <Link href="/">Home</Link>
+      <Link href="/home">Home</Link>
     </View>
   );
 }

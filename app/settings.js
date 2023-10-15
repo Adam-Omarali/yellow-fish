@@ -21,29 +21,12 @@ const renderItem = ({item}) => {
   );
 };
 
-export default function App() {
+export default function Settings() {
   return (
 
           <View style={styles.container}>
-<View style={{display: 'flex', flexDirection: 'row', gap: 20, justifyContent: 'space-between', width: '100%'}}>
-<Image
-      source={fish}
-      alt="Logo"
-      style={styles.headerImg}
-      />
-      <TouchableOpacity style={styles.buttonContainer}>
-        <Link href="/settings">
-          <Image
-            source={stingIcon} // Replace with the actual sourwce of your image
-            style={styles.headerImgTwo}
-            contentFit='contain'
-          />
-        </Link>
-      </TouchableOpacity>
-</View>
 
-
-      <Text style={styles.title}>Welcome, [NAME]!</Text>
+      <Text style={styles.title}>My Settings</Text>
       
 
       <View style={{display: 'flex', flexDirection: 'row', gap: 10}}>
