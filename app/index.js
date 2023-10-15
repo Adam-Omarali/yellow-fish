@@ -7,6 +7,7 @@ export default function Home() {
     <View style={styles.container}>
       <Text>Yellow Fish</Text>
       <Link href="/login">Login</Link>
+      <Link href="/translate">Translate</Link>
       <StatusBar style="auto" />
     </View>
   );
