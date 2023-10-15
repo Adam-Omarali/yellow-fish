@@ -166,15 +166,13 @@ export default function App() {
           <View>
             {predictions.map((prediction) => {
               if (prediction.hasOwnProperty("class")) {
-                return (
-                  <Text>{JSON.stringify(translate(prediction.class))}</Text>
-                );
+                return <Text>{prediction.class}</Text>;
               }
             })}
           </View>
         </View>
       ) : (
-        <Text>{model}</Text>
+        <Text>Loading...</Text>
       )}
       <Canvas style={styles.canvas} ref={handleCanvas} />
       <Link href="/home">Home</Link>

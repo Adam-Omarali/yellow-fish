@@ -28,7 +28,6 @@
 // }
 
 export async function translate(text) {
-  console.log(text);
   const res = await fetch(
     "https://api-inference.huggingface.co/pipeline/translation/facebook/mbart-large-50-many-to-many-mmt",
     {
@@ -43,6 +42,6 @@ export async function translate(text) {
     }
   );
   data = await res.json();
-  console.log(data);
+  //   console.log(data[0]["translation_text"]);
   return data[0]["translation_text"];
 }

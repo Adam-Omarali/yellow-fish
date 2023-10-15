@@ -7,12 +7,13 @@ import "@tensorflow/tfjs-react-native";
 import { Image } from "expo-image";
 import fish from "./Lexigo.png";
 import Canvas from "react-native-canvas";
+import * as cocoSsd from "@tensorflow-models/coco-ssd";
 
 export default function Home() {
   useEffect(() => {
     async function load() {
-      tf.ready();
-      console.log("ready");
+      await tf.ready();
+      // setModel(await cocoSsd.load());
     }
     load();
   }, []);
