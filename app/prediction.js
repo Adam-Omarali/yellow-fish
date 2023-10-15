@@ -4,12 +4,18 @@ import { cameraWithTensors } from '@tensorflow/tfjs-react-native';
 import { Camera } from 'expo-camera';
 import React, { useEffect, useRef, useState } from 'react';
 import { Dimensions, LogBox, Platform, StyleSheet, View, Text } from 'react-native';
+import Canvas from 'react-native-canvas';
 import { Link } from 'expo-router'
 
 const TensorCamera = cameraWithTensors(Camera);
 
+const { width, height } = Dimensions.get('window');
+
 export default function App() {
   const [model, setModel] = useState();
+  let context = useRef();
+  const canvasRef = useRef();
+  const [predictions, setPredicitions] = useState([])
 
  useEffect(() => {
    console.log(model)
@@ -26,7 +32,7 @@ export default function App() {
       model
         .detect(nextImageTensor)
         .then((predictions) => {
-            console.log(predictions)
+          setPredicitions(predictions)
         })
         .catch((err) => {
           console.log(err);
@@ -36,6 +42,73 @@ export default function App() {
     };
     loop();
   }
+
+  // function drawRectangle(
+  //   predictions, // cocoSsd.DetectedObject[],
+  //   nextImageTensor
+  // ) {
+  //   if (!context.current || !canvas.current) {
+  //     console.log('no context or canvas');
+  //     return;
+  //   }
+
+  //   // to match the size of the camera preview
+  //   const scaleWidth = width / nextImageTensor.shape[1];
+  //   const scaleHeight = height / nextImageTensor.shape[0];
+
+  //   const flipHorizontal = Platform.OS === 'ios' ? false : true;
+
+  //   // We will clear the previous prediction
+  //   context.current.clearRect(0, 0, width, height);
+
+  //   // Draw the rectangle for each prediction
+  //   for (const prediction of predictions) {
+  //     const [x, y, width, height] = prediction.bbox;
+
+  //     // Scale the coordinates based on the ratios calculated
+  //     const boundingBoxX = flipHorizontal
+  //       ? canvasRef.current.width - x * scaleWidth - width * scaleWidth
+  //       : x * scaleWidth;
+  //     const boundingBoxY = y * scaleHeight;
+
+  //     // Draw the bounding box.
+  //     context.current.strokeRect(
+  //       boundingBoxX,
+  //       boundingBoxY,
+  //       width * scaleWidth,
+  //       height * scaleHeight
+  //     );
+  //     // Draw the label
+  //     context.current.fillText(
+  //       prediction.class,
+  //       boundingBoxX - 5,
+  //       boundingBoxY - 5
+  //     );
+  //   }
+  // }
+
+  function handleCanvas(can){
+    if (can) {
+      can.width = width;
+      can.height = height;
+      const ctx = can.getContext('2d');
+      ctx.strokeStyle = 'red';
+      ctx.fillStyle = 'red';
+      // if(predictions.length > 0){
+      //   ctx.clearRect(0, 0, 350, 700);
+      // }
+      // else{
+      //   ctx.fillRect(0, 0, 350, 700);
+      // }
+      for (let prediction in predictions){
+        if(prediction.hasOwnProperty('bbox')){
+          const [x, y, width, height] = prediction.bbox;
+          // ctx.fillRect(x, y, width, height);
+          ctx.fillRect(0, 0, 350, 700)
+        }
+      }
+    }
+  };
 
   let textureDims;
   Platform.OS === 'ios'
@@ -62,27 +135,44 @@ export default function App() {
     })();
   }, []);
 
+  function handleCanvas2(canvas){
+    if(canvas){
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = 'red';
+      ctx.fillRect(0, 0, 350, 700);
+    }
+  }
+
   return (
     <View style={styles.container}>
-      {model ?       
-      <TensorCamera
-        // Standard Camera props
-        style={styles.camera}
-        type={Camera.Constants.Type.back}
-        // Tensor related props
-        cameraTextureHeight={textureDims.height}
-        cameraTextureWidth={textureDims.width}
-        resizeHeight={200}
-        resizeWidth={152}
-        resizeDepth={3}
-        onReady={handleCameraStream}
-        autorender={true}
-        useCustomShadersToResize={false}
-      />: 
+      {model ? 
+      <View>      
+        <TensorCamera
+          // Standard Camera props
+          style={styles.camera}
+          type={Camera.Constants.Type.back}
+          // Tensor related props
+          cameraTextureHeight={textureDims.height}
+          cameraTextureWidth={textureDims.width}
+          resizeHeight={200}
+          resizeWidth={152}
+          resizeDepth={3}
+          onReady={handleCameraStream}
+          autorender={true}
+          useCustomShadersToResize={false}
+        />
+        {/* <Canvas style={styles.canvas} ref={handleCanvas} /> */}
+        <View>{predictions.map(prediction => {
+          if(prediction.hasOwnProperty('class')){
+            return <Text>{prediction.class}</Text>
+          }
+        })}
+        </View>
+      </View>
+      : 
       <Text>{model}</Text>
       }
-      
-
+      <Canvas style={styles.canvas} ref={handleCanvas} />
       <Link href="/home">Home</Link>
     </View>
   );
@@ -94,13 +184,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   camera: {
-    width: '100%',
-    height: '100%',
+    width: '90%',
+    height: '90%',
   },
   canvas: {
-    position: 'absolute',
-    zIndex: 1000000,
+    position: "absolute",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    zindex: 10,
     width: '100%',
     height: '100%',
+    borderWidth: 1,
   },
 });

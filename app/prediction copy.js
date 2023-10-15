@@ -28,8 +28,28 @@ export default function App() {
       model
         .detect(nextImageTensor)
         .then((predictions) => {
-            console.log('predicting')
-          drawRectangle(predictions, nextImageTensor);
+          const boxes = [];
+          const scores = [];
+          for (const prediction of predictions) {
+            boxes.push([prediction.bbox[1], prediction.bbox[0], prediction.bbox[3], prediction.bbox[2]]);
+            scores.push(prediction.score);
+          }
+
+          if (boxes.length > 0) {
+            tf.nonMaxSuppressionAsync(boxes, scores, 10, 0.5)
+              .then((selectedIndices) => {
+                const selectedPredictions = selectedIndices.map((index) => predictions[index]);
+
+                // Draw rectangles for selected predictions
+                drawRectangle(selectedPredictions, nextImageTensor);
+              })
+              .catch((err) => {
+                console.error('Error during non-maximum suppression:', err);
+              });
+          } else {
+            // No objects found, clear the canvas
+            context.current.clearRect(0, 0, width, height);
+          }
         })
         .catch((err) => {
           console.log(err);
