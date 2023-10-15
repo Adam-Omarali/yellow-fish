@@ -7,9 +7,14 @@ import { Image } from 'expo-image';
 import fish from '../assets/LogoTransparent.png'
 
 export default function App() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleNameChange = (text) => {
+    setName(text);
+  };
+  
   const handleEmailChange = (text) => {
     setEmail(text);
   };
@@ -30,6 +35,12 @@ export default function App() {
       <Text style={styles.title}>Let's get started.</Text>
 
     <View style={styles.container}>
+    <TextInput
+        style={styles.input}
+        placeholder="Name"
+        value={name}
+        onChangeText={handleNameChange}
+      />
       <TextInput
         style={styles.input}
         placeholder="Email"
