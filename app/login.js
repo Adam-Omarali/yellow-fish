@@ -85,21 +85,18 @@ const styles = StyleSheet.create({
     fontSize: 36, 
     fontWeight: 'bold',
     color: '#000',
-    fontFamily: 'Poppins-Bold',
   },
   body: {
     fontSize: 14, 
     fontWeight: 'bold',
     color: '#d9d9d9',
     marginTop: 40,
-    fontFamily: 'Poppins-Regular',
   },
   bodyLogIn: {
     fontSize: 14, 
     fontWeight: 'bold',
     color: '#e8da00',
     marginTop: 40,
-    fontFamily: 'Poppins-Regular',
   },
   backgroundImg: {
     position: 'absolute',
@@ -126,7 +123,6 @@ const styles = StyleSheet.create({
     borderColor: '#d9d9d9', // Border color (gray)
     backgroundColor: '#f6f6f6',
     fontSize: 18,
-    fontFamily: 'Poppins-Regular',
     borderRadius: 20, // Rounded corners
     marginBottom: 20,
     paddingHorizontal: 10,
