@@ -10,7 +10,7 @@ import MainBgIcon from '../assets/MainBgImage.jpg'
 
 
 
-const renderItem = ({item}) => {
+const renderItem = ({ item }) => {
   return (
     <View
       style={{
@@ -26,51 +26,51 @@ const renderItem = ({item}) => {
 export default function App() {
   return (
 
-          <View style={styles.container}>
-<View style={{display: 'flex', flexDirection: 'row', gap: 80, justifyContent: 'space-between', width: '100%'}}>
-<View style={styles.buttonContainer}>
-<Link href="/login">
-<Image
-      source={fish}
-      alt="Logo"
-      style={styles.headerImg}
-      />
-  </Link>
-</View>
+    <View style={styles.container}>
+      <View style={{ display: 'flex', flexDirection: 'row', gap: 80, justifyContent: 'space-between', width: '100%' }}>
+        <View style={styles.buttonContainer}>
+          <Link href="/login">
+            <Image
+              source={fish}
+              alt="Logo"
+              style={styles.headerImg}
+            />
+          </Link>
+        </View>
 
-      <View style={styles.buttonContainer}>
-        <Link href="/settings">
-          <Image
-            source={stingIcon} // Replace with the actual sourwce of your image
-            style={styles.headerImgTwo}
-            contentFit='contain'
-          />
-        </Link>
+        <View style={styles.buttonContainer}>
+          <Link href="/settings">
+            <Image
+              source={stingIcon} // Replace with the actual sourwce of your image
+              style={styles.headerImgTwo}
+              contentFit='contain'
+            />
+          </Link>
+        </View>
       </View>
-</View>
 
 
       <Text style={styles.title}>Welcome, User!</Text>
-      
 
-      <View style={{display: 'flex', flexDirection: 'row', gap: 10}}>
+
+      <View style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
         <TouchableOpacity style={styles.buttonOne}>
-          <Link style={styles.btnText} href="/camera">
+          <Link style={styles.btnText} href="/prediction">
             <Text>Learn</Text>
           </Link>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonTwo}>
-          <Link style={styles.btnText} href="/camera">
-            <Text>1 v 1</Text>
+          <Link style={styles.btnText} href="/prediction">
+            <Text>Quiz</Text>
           </Link>
         </TouchableOpacity>
       </View>
-      
+
       <Image
-      source={MainBgIcon}
-      alt="Logo"
-      style={styles.headerImgv3}
+        source={MainBgIcon}
+        alt="Logo"
+        style={styles.headerImgv3}
       />
     </View>
 
@@ -87,9 +87,9 @@ const styles = StyleSheet.create({
   },
 
   title: {
-        fontSize: 30, 
-        fontWeight: 'bold',
-        marginTop: 80,
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginTop: 80,
   },
 
   subtitle: {
@@ -97,9 +97,9 @@ const styles = StyleSheet.create({
     fontWeight: 'thin',
     color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
+    textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 3,
-   
+
   },
 
   subtitletwo: {
@@ -113,21 +113,21 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     color: '#fff',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -0.5, height: 0.5},
+    textShadowOffset: { width: -0.5, height: 0.5 },
     textShadowRadius: 3
   },
 
   headerImg: {
-    
+
     width: 100,
     height: 100,
     marginTop: -25,
     marginRight: 35,
-    
+
   },
 
   headerImgTwo: {
-    
+
     width: 50,
     height: 50,
     marginTop: 55,
@@ -147,10 +147,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingTop: 100,
     marginBottom: 7,
-     shadowColor: '#171717',
-      shadowOffset: {width: -2, height: 4},
-      shadowOpacity: 0.1,
-      shadowRadius: 2,
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
 
   buttonOne: {
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     paddingBottom: 60,
     paddingHorizontal: 30,
     marginRight: 10,
-    
+
   },
 
   buttonTwo: {
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   },
 
   transparentBg: {
-    
+
   },
 
 });
