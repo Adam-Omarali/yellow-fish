@@ -42,6 +42,6 @@ export async function translate(text) {
     }
   );
   data = await res.json();
-  //   console.log(data[0]["translation_text"]);
+  console.log(data);
   return data[0]["translation_text"];
 }

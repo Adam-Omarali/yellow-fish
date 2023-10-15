@@ -30,7 +30,6 @@ export default function App() {
   const [picture, setPicture] = useState(false);
   const [tensor, setTensor] = useState();
   const [predicted, setPredicted] = useState(false);
-  const [gl, setGL] = useState();
   const [translations, setTranslations] = useState([]);
 
   useEffect(() => {
@@ -73,25 +72,20 @@ export default function App() {
     }
   }
 
-  function predict() {
+  async function predict() {
     if (!predicted) {
-      model
-        .detect(tensor)
-        .then(async (predictions) => {
-          setPredicitions(predictions);
-          const temp = [];
-          await predictions.map(async (prediction) => {
-            if (prediction.hasOwnProperty("class")) {
-              let translated = await translate(prediction.class);
-              temp.push(translated);
-            }
-          });
-          setTranslations(temp);
-          console.log(temp);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const predictions = await model.detect(tensor);
+      setPredicitions(predictions);
+
+      const temp = [];
+      for (let i = 0; i < predictions.length; i++) {
+        let prediction = predictions[i];
+        if (prediction.hasOwnProperty("class")) {
+          let translated = await translate(prediction.class);
+          temp.push(translated);
+        }
+      }
+      setTranslations(temp);
 
       setPredicted(true);
     }
@@ -133,7 +127,12 @@ export default function App() {
   }, []);
 
   function takePicture() {
-    setPicture(true);
+    if (!picture) {
+      setPredicitions([]);
+      setTranslations([]);
+      setPredicted(false);
+    }
+    setPicture(!picture);
     console.log("taking pic: " + picture);
     // let pic = cameraRef.current.takePictureAsync();
   }
@@ -167,18 +166,24 @@ export default function App() {
 
           {/* <Canvas style={styles.canvas} ref={handleCanvas} /> */}
           <View style={styles.container}>
-            <View>
-              {predictions.map((prediction, i) => {
-                if (prediction.hasOwnProperty("class")) {
-                  return (
-                    //   <Text>{JSON.stringify(translate(prediction.class))}</Text>
-                    <Text style={{ color: "black" }} key={prediction.class}>
-                      {prediction.class + ": " + translations[i]}
-                    </Text>
-                  );
-                }
-              })}
-            </View>
+            {picture ? (
+              predicted ? (
+                <View>
+                  {predictions.map((prediction, i) => {
+                    if (prediction.hasOwnProperty("class")) {
+                      return (
+                        //   <Text>{JSON.stringify(translate(prediction.class))}</Text>
+                        <Text style={{ color: "black" }} key={prediction.class}>
+                          {prediction.class + ": " + translations[i]}
+                        </Text>
+                      );
+                    }
+                  })}
+                </View>
+              ) : (
+                <Text>Loading...</Text>
+              )
+            ) : null}
             <View style={styles.buttonContainer}>
               <Pressable style={styles.button} onPress={takePicture}>
                 <Text style={styles.text}>
