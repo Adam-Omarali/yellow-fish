@@ -47,9 +47,7 @@ export default function App() {
 
       requestAnimationFrame(loop);
     };
-    setInterval(() => {
-      loop();
-    }, 1000);
+    loop()
   }
 
   // function drawRectangle(
@@ -167,7 +165,7 @@ export default function App() {
             {predictions.map((prediction) => {
               if (prediction.hasOwnProperty("class")) {
                 return (
-                  <Text>{JSON.stringify(translate(prediction.class))}</Text>
+                  <Text>{(prediction.class)}</Text>
                 );
               }
             })}
