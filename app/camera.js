@@ -23,7 +23,7 @@ const TensorCamera = cameraWithTensors(Camera);
 const { width, height } = Dimensions.get("window");
 
 const openai = new OpenAI({
-  apiKey: "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", // defaults to process.env["OPENAI_API_KEY"]
+  apiKey: process.env.OPENAI_API_KEY, // defaults to process.env["OPENAI_API_KEY"]
 });
 
 export default function App() {
