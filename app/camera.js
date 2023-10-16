@@ -16,10 +16,15 @@ import {
 import Canvas from "react-native-canvas";
 import { Link } from "expo-router";
 import { translate } from "./translate";
+import OpenAI from "openai";
 
 const TensorCamera = cameraWithTensors(Camera);
 
 const { width, height } = Dimensions.get("window");
+
+const openai = new OpenAI({
+  apiKey: "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", // defaults to process.env["OPENAI_API_KEY"]
+});
 
 export default function App() {
   const [model, setModel] = useState();
@@ -47,6 +52,25 @@ export default function App() {
       requestAnimationFrame(loop);
     };
     loop();
+  }
+
+  async function getQuestion(word) {
+    const chatCompletion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: "user",
+          content:
+            "I'm somebody trying to learn french. You are my helpful french teacher",
+        },
+        {
+          role: "user",
+          content: `What is an easy question you can ask me related to a ${word} in french? Only respond with the question and no other text`,
+        },
+      ],
+      model: "gpt-3.5-turbo",
+    });
+
+    console.log(chatCompletion.choices);
   }
 
   function handleCanvas(can) {
@@ -86,6 +110,7 @@ export default function App() {
         }
       }
       setTranslations(temp);
+      //   await getQuestion(predictions[0]);
 
       setPredicted(true);
     }
@@ -173,7 +198,10 @@ export default function App() {
                     if (prediction.hasOwnProperty("class")) {
                       return (
                         //   <Text>{JSON.stringify(translate(prediction.class))}</Text>
-                        <Text style={{ color: "black" }} key={prediction.class}>
+                        <Text
+                          style={{ color: "black", fontSize: 30 }}
+                          key={prediction.class}
+                        >
                           {prediction.class + ": " + translations[i]}
                         </Text>
                       );
@@ -197,7 +225,7 @@ export default function App() {
         <Text>{"Loading..."}</Text>
       )}
       {/* <Canvas style={styles.canvas} ref={handleCanvas} /> */}
-      <Link href="/home">Home</Link>
+      {/* <Link href="/home">Home</Link> */}
     </View>
   );
 }
